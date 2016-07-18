@@ -29,8 +29,8 @@ import javax.mail.internet.MimeMultipart;
 @ViewScoped
 public class user implements Serializable {
 
-    private String usuarioCorreo = "leherreras@gmail.com";
-    private String password = "jcwysprerpyeqxwg";
+    private String usuarioCorreo = "";
+    private String password = "";
     private String asunto;
     private String cuerpo;
     private Properties p;
