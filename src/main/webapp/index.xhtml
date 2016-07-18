@@ -13,20 +13,48 @@
 
         <p:growl id="growl" sticky="true" showDetail="true"/>
         <h:form>
-            <p:tab id="contact" title="Contactenos">
-                <p:panel header="Contact Information">
+            <p:tab id="contact" title="Contactenos Gmail">
+                <p:panel header="Contactenos por Gmail">
                     <p:messages />
                     <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="Asunto: " />
-                        <p:inputText value="#{user.asunto}" required="true" label="Email"/>
+                        <p:outputLabel for="asunto" value="Asunto: " />
+                        <p:inputText id="asunto" value="#{user.asunto}" required="true" label="Email"/>
 
-                        <h:outputText value="Cuerpo: " />
-                        <p:inputTextarea value="#{user.cuerpo}"/>
+                        <h:outputLabel for="correo" value="Destinatario " />
+                        <p:inputTextarea id="correo" value="#{user.correo}"/>
+                        
+                        <h:outputLabel for="cuerpo" value="Cuerpo: " />
+                        <p:inputTextarea id="cuerpo" value="#{user.cuerpo}"/>
 
                     </h:panelGrid>
                 </p:panel>
             </p:tab>
-            <p:commandButton value="Submit" actionListener="#{user.enviarCorreo()}" update="growl"/>
+            <p:commandButton value="Enviar Gmail" actionListener="#{user.enviarGmail()}" update="growl"/>
+        </h:form>
+        <h:form>
+            <p:tab id="contact" title="Contactenos Office 365">
+                <p:panel header="Contactenos por Office 365">
+                    <p:messages />
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <p:outputLabel for="usuarioCorreo" value="Correo Electronico: " />
+                        <p:inputText id="usuarioCorreo" value="#{user.usuarioCorreo}" required="true" label="Email"/>
+                        
+                        <p:outputLabel for="password" value="Contraseña: " />
+                        <p:password id="password" value="#{user.password}" required="true" label="Email"/>
+                        
+                        <p:outputLabel for="asunto" value="Asunto: " />
+                        <p:inputText id="asunto" value="#{user.asunto}" required="true" label="Email"/>
+
+                        <h:outputLabel for="correo" value="Destinatario correo: " />
+                        <p:inputText id="correo" value="#{user.correo}"/>
+                        
+                        <h:outputLabel for="cuerpo" value="Mensaje: " />
+                        <p:editor id="editor" widgetVar="editorWidget" value="#{user.cuerpo}" width="600" />
+
+                    </h:panelGrid>
+                </p:panel>
+            </p:tab>
+            <p:commandButton value="Enviar Office 365" actionListener="#{user.enviarOffice365()}" update="growl"/>
         </h:form>
 
     </h:body>

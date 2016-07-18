@@ -34,7 +34,7 @@ public class user implements Serializable {
     private String asunto;
     private String cuerpo;
     private Properties p;
-    private String correo = "leherreras@gmail.com";
+    private String correo;
 
     public String getCorreo() {
         return correo;
@@ -82,14 +82,26 @@ public class user implements Serializable {
 
     }
 
-    public void enviarCorreo() {
-        try {
+    public void enviarGmail() {
+        p.put("mail.smtp.host", "smtp.gmail.com");
+        p.setProperty("mail.smtp.starttls.enable", "true");
+        p.setProperty("mail.smtp.port", "587");
+        p.setProperty("mail.smpt.user", this.getUsuarioCorreo());
+        p.setProperty("mail.smtp.auth", "true");
+        enviarCorreo();
+    }
 
-            p.put("mail.smtp.host", "smtp.gmail.com");
-            p.setProperty("mail.smtp.starttls.enable", "true");
-            p.setProperty("mail.smtp.port", "587");
-            p.setProperty("mail.smpt.user", this.getUsuarioCorreo());
-            p.setProperty("mail.smtp.auth", "true");
+    public void enviarOffice365() {
+        p.put("mail.smtp.host", "smtp.office365.com");
+        p.setProperty("mail.smtp.starttls.enable", "true");
+        p.setProperty("mail.smtp.port", "587");
+        p.setProperty("mail.smpt.user", this.getUsuarioCorreo());
+        p.setProperty("mail.smtp.auth", "true");
+        enviarCorreo();
+    }
+
+    private void enviarCorreo() {
+        try {
 
             Session s = Session.getDefaultInstance(p, null);
             BodyPart texto = new MimeBodyPart();
